@@ -50,7 +50,9 @@ function BasicForm() {
           <Controller
             name="Email"
             control={control}
-            render={({ field }) => <InputSimple {...field} />}
+            render={({ field: { onChange, ref, name } }) => (
+              <InputSimple name={name} onChange={onChange} ref={ref} />
+            )}
           />
         </div>
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-2">
@@ -100,24 +102,6 @@ function BasicForm() {
         <div className="w-full px-3 mb-6 md:mb-0">
           <MySelect label={"Gender"} {...register("Gender")} />
         </div>
-        {/* <div className="w-full px-3 mb-6 md:mb-0">
-          <Controller
-            name="Country"
-            control={control}
-            render={({ ...field }) => {
-              return (
-                <Select
-                  options={[
-                    { value: "Taiwan", label: "Taiwan" },
-                    { value: "Japan", label: "Japan" },
-                    { value: "Korea", label: "Korea" },
-                  ]}
-                  {...field}
-                />
-              );
-            }}
-          />
-        </div> */}
         <div className="w-full px-3 mb-6 md:mb-1 flex justify-end items-end">
           <button
             className="min-w-[100px] text-center p-3 bg-[#222] text-white transition rounded-[.25rem] hover:opacity-90"
