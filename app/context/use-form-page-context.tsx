@@ -1,31 +1,31 @@
-"use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+'use client';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface IFormPageContext {
-  isFormPage: boolean;
-  setIsFormPage: React.Dispatch<React.SetStateAction<boolean>>;
+    isFormPage: boolean;
+    setIsFormPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const FormPageContext = createContext<IFormPageContext>({
-  isFormPage: false,
-  setIsFormPage: () => {},
+    isFormPage: false,
+    setIsFormPage: () => {},
 });
 
 export const useFormPageContext = () => useContext(FormPageContext);
 
 // 定義Props類型以包含children
 type FormPageProviderProps = {
-  children: ReactNode;
+    children: ReactNode;
 };
 
 export const FormPageProvider: React.FC<FormPageProviderProps> = ({
-  children,
+    children,
 }) => {
-  const [isFormPage, setIsFormPage] = useState(true);
+    const [isFormPage, setIsFormPage] = useState(true);
 
-  return (
-    <FormPageContext.Provider value={{ isFormPage, setIsFormPage }}>
-      {children}
-    </FormPageContext.Provider>
-  );
+    return (
+        <FormPageContext.Provider value={{ isFormPage, setIsFormPage }}>
+            {children}
+        </FormPageContext.Provider>
+    );
 };
