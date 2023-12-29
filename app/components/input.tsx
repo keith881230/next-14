@@ -1,7 +1,7 @@
-import { Path, UseFormRegister, FieldError } from 'react-hook-form';
-import { IFormValues } from './react-hook-form/basic-form';
-import { PWDInvisibleIcon, PWDvisibleIcon } from './icons/icons';
 import { useState } from 'react';
+import { FieldError, Path, UseFormRegister } from 'react-hook-form';
+import { PWDInvisibleIcon, PWDvisibleIcon } from './icons/icons';
+import { IFormValues } from './react-hook-form/basic-form';
 
 type InputProps = {
     label: Path<IFormValues>;
@@ -16,7 +16,6 @@ export const DEFAULT_CLASSNAME =
 
 function Input({ label, register, required, className, error }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
-
     const handleInputType = (label: string) => {
         switch (label) {
             case 'Password':
@@ -69,41 +68,31 @@ function Input({ label, register, required, className, error }: InputProps) {
 
     return (
         <>
-            <label className="block tracking-wide text-gray-700 text-xs font-semibold mb-2">
-                {label}
-            </label>
+            <label className="mb-2 block text-xs font-semibold tracking-wide text-gray-700">{label}</label>
             <div className="relative">
                 <input
                     type={handleInputType(label)}
-                    className={`${DEFAULT_CLASSNAME} ${className} ${
-                        error && 'border-red-500 border'
-                    }}`}
+                    className={`${DEFAULT_CLASSNAME} ${className} ${error && 'border border-red-500'}}`}
                     {...register(label, handleValidation(label))}
                 />
                 {label === 'Password' && (
                     <span
                         className="absolute bottom-3 right-[17px]"
-                        onClick={e => {
+                        onClick={(e) => {
                             e.stopPropagation();
                             setShowPassword(!showPassword);
                         }}
                     >
-                        <span
-                            className={`${showPassword ? 'block' : 'hidden'}`}
-                        >
+                        <span className={`${showPassword ? 'block' : 'hidden'}`}>
                             <PWDvisibleIcon />
                         </span>
-                        <span
-                            className={`${!showPassword ? 'block' : 'hidden'}`}
-                        >
+                        <span className={`${!showPassword ? 'block' : 'hidden'}`}>
                             <PWDInvisibleIcon />
                         </span>
                     </span>
                 )}
             </div>
-            {error && (
-                <span className="text-xs text-red-500">{error.message}</span>
-            )}
+            {error && <span className="text-xs text-red-500">{error.message}</span>}
         </>
     );
 }

@@ -1,5 +1,4 @@
 import LinkButton from '@/app/components/link-button';
-import React from 'react';
 
 type Props = {};
 

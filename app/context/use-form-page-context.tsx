@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface IFormPageContext {
     isFormPage: boolean;
@@ -18,14 +18,8 @@ type FormPageProviderProps = {
     children: ReactNode;
 };
 
-export const FormPageProvider: React.FC<FormPageProviderProps> = ({
-    children,
-}) => {
+export const FormPageProvider: React.FC<FormPageProviderProps> = ({ children }) => {
     const [isFormPage, setIsFormPage] = useState(true);
 
-    return (
-        <FormPageContext.Provider value={{ isFormPage, setIsFormPage }}>
-            {children}
-        </FormPageContext.Provider>
-    );
+    return <FormPageContext.Provider value={{ isFormPage, setIsFormPage }}>{children}</FormPageContext.Provider>;
 };

@@ -1,15 +1,9 @@
 'use client';
 
-import { Select } from 'react-functional-select';
-import React, {
-    useState,
-    useCallback,
-    type ComponentProps,
-    ForwardedRef,
-} from 'react';
-import { StyleSheetManager } from 'styled-components';
 import isPropValid from '@emotion/is-prop-valid';
-import { DEFAULT_CLASSNAME } from './input';
+import React, { ForwardedRef, useCallback, useState, type ComponentProps } from 'react';
+import { Select } from 'react-functional-select';
+import { StyleSheetManager } from 'styled-components';
 
 type Option = Readonly<{
     id: number;
@@ -31,14 +25,9 @@ const CITY_OPTIONS: Option[] = [
 ];
 
 const SingleSelect = React.forwardRef<HTMLSelectElement, SingleSelectProps>(
-    (
-        { isDisabled, onChange, ...props },
-        ref: ForwardedRef<HTMLSelectElement>,
-    ) => {
+    ({ isDisabled, onChange, ...props }, ref: ForwardedRef<HTMLSelectElement>) => {
         const [isInvalid, setIsInvalid] = useState<boolean>(false);
-        const [selectedOption, setSelectedOption] = useState<Option | null>(
-            null,
-        );
+        const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
         const getOptionValue = useCallback((opt: Option): number => opt.id, []);
         const onOptionChange = useCallback(
@@ -48,10 +37,7 @@ const SingleSelect = React.forwardRef<HTMLSelectElement, SingleSelectProps>(
             },
             [onChange],
         );
-        const getOptionLabel = useCallback(
-            (opt: Option): string => `${opt.country}`,
-            [],
-        );
+        const getOptionLabel = useCallback((opt: Option): string => `${opt.country}`, []);
 
         return (
             <StyleSheetManager shouldForwardProp={isPropValid}>

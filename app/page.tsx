@@ -1,10 +1,9 @@
-import Link from 'next/link';
-import LinkButton from './components/link-button';
-
 export default function Home() {
+    const a = 'a';
+
     return (
         <main>
-            <div className="h-10 items-center flex gap-3"></div>
+            <div className="flex h-10 items-center gap-3">123</div>
         </main>
     );
 }
